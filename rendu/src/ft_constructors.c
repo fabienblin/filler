@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/23 17:04:25 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/06 15:20:44 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/19 17:23:27 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,10 @@ t_seg	*ft_newsegment(t_point *a, t_point *b)
 	if (!(seg = (t_seg *)malloc(sizeof(t_seg))))
 		return (NULL);
 	ft_bzero(seg, sizeof(t_seg));
+	if (!a)
+		a = ft_newpoint(0, 0);
+	if (!b)
+		b = ft_newpoint(0, 0);
 	if (a && b)
 	{
 		seg->a = a;
@@ -47,7 +51,7 @@ t_seg	*ft_newsegment(t_point *a, t_point *b)
 	return (seg);
 }
 
-t_grid	*ft_new_grid(int x, int y)
+t_grid	*ft_newgrid(int x, int y)
 {
 	t_grid	*new;
 	int		i;
@@ -70,4 +74,17 @@ t_grid	*ft_new_grid(int x, int y)
 		}
 	}
 	return (new);
+}
+
+t_env	*ft_newenv(t_grid *grid, t_grid *piece, t_grid *strat, char meChar)
+{
+	t_env	*env;
+
+	if (!(env = (t_env *)malloc(sizeof(t_env))))
+		return (NULL);
+	env->grid = grid;
+	env->piece = piece;
+	env->strat = strat;
+	env->meChar = meChar;
+	return (env);
 }

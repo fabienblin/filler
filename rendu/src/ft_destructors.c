@@ -6,26 +6,28 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/23 17:04:55 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/04 14:25:15 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/20 15:24:20 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	ft_delsegment(t_seg *seg)
+void	ft_delsegment(t_seg **seg)
 {
-	free(seg);
-	seg = NULL;
+	ft_delpoint(&(*seg)->a);
+	ft_delpoint(&(*seg)->b);
+	free(*seg);
+	*seg = NULL;
 }
 
-void	ft_delpoint(t_point *p)
+void	ft_delpoint(t_point **p)
 {
-	free(p);
-	p = NULL;
+	free(*p);
+	*p = NULL;
 }
 
-void	ft_del_grid(t_grid **grid)
+void	ft_delgrid(t_grid **grid)
 {
 	int i;
 	
@@ -36,4 +38,13 @@ void	ft_del_grid(t_grid **grid)
 	}
 	free(*grid);
 	*grid = NULL;
+}
+
+void	ft_delenv(t_env **env)
+{
+	ft_delgrid(&(*env)->grid);
+	ft_delgrid(&(*env)->piece);
+	ft_delgrid(&(*env)->strat);
+	free(*env);
+	*env = NULL;
 }
