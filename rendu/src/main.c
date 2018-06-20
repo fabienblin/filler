@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/15 14:25:14 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/20 17:15:44 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/20 19:43:53 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,13 +27,14 @@ int		ft_piece_try(t_env *env, int gy, int gx)
 		p.x = 0;
 		while (commun <= 1 && p.x < env->piece->x)
 		{
-			while (commun <= 1 && p.x < env->piece->x && env->piece->data[p.y][p.x] == '*')
+			if (commun <= 1 && p.x < env->piece->x && env->piece->data[p.y][p.x] == '*')
 			{
 				if (p.x < env->piece->x && env->grid->data[gy + p.y][gx + p.x] == '.')
 					score += env->strat->data[gy + p.y][gx + p.x] + 1;
 				else if (ft_isme(env->meChar, env->grid->data[gy + p.y][gx + p.x]))
 					commun++;
-				p.x++;
+				else
+					return (0);
 			}
 			p.x++;
 		}
@@ -167,10 +168,10 @@ int		main()
 			ft_exit("piece error");
 		if (ft_strat(env) == -1)
 			ft_exit("strat error");
-			ft_put_grid(env->strat);
+		//ft_put_grid(env->strat);
 		best = ft_play(env);
 		ft_printf("%d %d\n", best.y, best.x);
 	}
-	free(env);
+	ft_delenv(&env);
 	return (0);
 }

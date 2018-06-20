@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 19:05:45 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/20 16:50:32 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/20 19:03:29 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,18 +72,14 @@ int	ft_strat(t_env *env)
 	t_seg	*me;
 
 	ft_delgrid(&env->strat);
-	if (env->grid)
-	{
-		ft_def_players(&me, &he, env->grid, env->meChar);
-		env->strat = ft_newgrid(env->grid->x, env->grid->y);
-		ft_sides(me, he, env->strat);
-		ft_fuse(he, me, env->strat);
-		ft_contour(env->grid, env->strat, env->meChar);
-		ft_frame(env->grid, env->strat, he);
-		ft_gobehind(he, me, env->strat);
-		ft_delsegment(&he);
-		ft_delsegment(&me);
-		return (0);
-	}
-	return (-1);
+	ft_def_players(&me, &he, env->grid, env->meChar);
+	env->strat = ft_newgrid(env->grid->x, env->grid->y);
+	ft_fuse(he, me, env->strat);
+	ft_sides(me, he, env->strat);
+	ft_contour(env->grid, env->strat, env->meChar);
+	ft_frame(env->grid, env->strat, he);
+	ft_gobehind(he, me, env->strat);
+	ft_delsegment(&he);
+	ft_delsegment(&me);
+	return (0);
 }
