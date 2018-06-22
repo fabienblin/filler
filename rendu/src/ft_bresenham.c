@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:19:14 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/18 15:41:40 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/22 18:12:08 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,7 +65,7 @@ static void	tracey(t_grid *grid, t_seg *seg, int val)
 	}
 }
 
-void	bresenham(t_grid *strat, t_seg *seg, int val)
+void		bresenham(t_grid *strat, t_seg *seg, int val)
 {
 	if (seg && strat)
 	{

@@ -6,17 +6,16 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 19:05:45 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/20 19:03:29 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/22 18:25:46 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-
-void	ft_me_surround_box(t_seg *me, t_point prgs, char meChar, t_grid* grid)
+void	ft_me_surround_box(t_seg *me, t_point prgs, char my, t_grid *grid)
 {
-	if (ft_isme(meChar, grid->data[prgs.y][prgs.x]))
+	if (ft_isme(my, grid->data[prgs.y][prgs.x]))
 	{
 		if (prgs.x >= me->a->x)
 			me->a->x = prgs.x < grid->x - 1 ? prgs.x + 1 : prgs.x;
@@ -29,9 +28,9 @@ void	ft_me_surround_box(t_seg *me, t_point prgs, char meChar, t_grid* grid)
 	}
 }
 
-void	ft_he_surround_box(t_seg *he, t_point prgs, char meChar, t_grid* grid)
+void	ft_he_surround_box(t_seg *he, t_point prgs, char my, t_grid *grid)
 {
-	if (ft_isnotme(meChar, grid->data[prgs.y][prgs.x]))
+	if (ft_isnotme(my, grid->data[prgs.y][prgs.x]))
 	{
 		if (prgs.x >= he->a->x)
 			he->a->x = prgs.x < grid->x - 1 ? prgs.x + 1 : prgs.x;
@@ -44,7 +43,7 @@ void	ft_he_surround_box(t_seg *he, t_point prgs, char meChar, t_grid* grid)
 	}
 }
 
-void	ft_def_players(t_seg **me, t_seg **he, t_grid *grid, char meChar)
+void	ft_def_players(t_seg **me, t_seg **he, t_grid *grid, char my)
 {
 	t_point	progress;
 
@@ -58,25 +57,25 @@ void	ft_def_players(t_seg **me, t_seg **he, t_grid *grid, char meChar)
 		progress.x = 0;
 		while (progress.x < grid->x)
 		{
-			ft_me_surround_box(*me, progress, meChar, grid);
-			ft_he_surround_box(*he, progress, meChar, grid);
+			ft_me_surround_box(*me, progress, my, grid);
+			ft_he_surround_box(*he, progress, my, grid);
 			progress.x++;
 		}
 		progress.y++;
 	}
 }
 
-int	ft_strat(t_env *env)
+int		ft_strat(t_env *env)
 {
 	t_seg	*he;
 	t_seg	*me;
 
 	ft_delgrid(&env->strat);
-	ft_def_players(&me, &he, env->grid, env->meChar);
+	ft_def_players(&me, &he, env->grid, env->my);
 	env->strat = ft_newgrid(env->grid->x, env->grid->y);
 	ft_fuse(he, me, env->strat);
 	ft_sides(me, he, env->strat);
-	ft_contour(env->grid, env->strat, env->meChar);
+	ft_contour(env->grid, env->strat, env->my);
 	ft_frame(env->grid, env->strat, he);
 	ft_gobehind(he, me, env->strat);
 	ft_delsegment(&he);

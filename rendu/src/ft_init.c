@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_init.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/05/15 14:25:14 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/22 18:21:10 by fablin      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/22 14:49:18 by fablin       #+#   ##    ##    #+#       */
+/*   Updated: 2018/06/22 14:51:02 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		main(void)
+int		ft_init_my(t_env *env)
 {
-	t_point	best;
+	char	*line;
+	int		gnl;
+
+	line = NULL;
+	env->my = 0;
+	if ((gnl = get_next_line(0, &line)) > 0)
+	{
+		if (line[10] == '1')
+			env->my = 'o';
+		else if (line[10] == '2')
+			env->my = 'x';
+		else
+			ft_exit("player num is invalid");
+		ft_strdel(&line);
+	}
+	return (gnl);
+}
+
+t_env	*ft_init(void)
+{
 	t_env	*env;
 
-	env = ft_init();
-	if (ft_init_my(env) == -1)
-		ft_exit("Fail to connect to virtual machine.");
-	while (1)
-	{
-		if (ft_setgrid(env) == -1)
-			ft_exit("grid error");
-		if (ft_setpiece(env) == -1)
-			ft_exit("piece error");
-		if (ft_strat(env) == -1)
-			ft_exit("strat error");
-		best = ft_play(env);
-		ft_printf("%d %d\n", best.y, best.x);
-	}
-	ft_delenv(&env);
-	return (0);
+	env = ft_newenv(ft_newgrid(0, 0), ft_newgrid(0, 0), ft_newgrid(0, 0), 0);
+	return (env);
 }

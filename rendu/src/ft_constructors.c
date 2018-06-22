@@ -6,11 +6,11 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/23 17:04:25 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/19 17:23:27 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/22 18:19:22 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
- 
+
 #include "filler.h"
 
 t_point	*ft_newpoint(int x, int y)
@@ -66,7 +66,7 @@ t_grid	*ft_newgrid(int x, int y)
 			return (NULL);
 		new->data[y] = NULL;
 		i = 0;
-		while(i < y)
+		while (i < y)
 		{
 			if (!(new->data[i] = ft_strnew(x)))
 				return (NULL);
@@ -76,7 +76,7 @@ t_grid	*ft_newgrid(int x, int y)
 	return (new);
 }
 
-t_env	*ft_newenv(t_grid *grid, t_grid *piece, t_grid *strat, char meChar)
+t_env	*ft_newenv(t_grid *grid, t_grid *piece, t_grid *strat, char my)
 {
 	t_env	*env;
 
@@ -85,6 +85,6 @@ t_env	*ft_newenv(t_grid *grid, t_grid *piece, t_grid *strat, char meChar)
 	env->grid = grid;
 	env->piece = piece;
 	env->strat = strat;
-	env->meChar = meChar;
+	env->my = my;
 	return (env);
 }

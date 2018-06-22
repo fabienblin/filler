@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/23 17:04:55 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/20 15:24:20 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/22 18:13:23 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ void	ft_delpoint(t_point **p)
 void	ft_delgrid(t_grid **grid)
 {
 	int i;
-	
+
 	i = 0;
 	while (i < (*grid)->y)
 	{
