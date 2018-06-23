@@ -6,12 +6,12 @@
 #   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     #
 #                                                 #+#   #+    #+    #+#      #
 #   Created: 2018/05/15 14:08:18 by fablin       #+#   ##    ##    #+#       #
-#   Updated: 2018/06/22 20:39:27 by fablin      ###    #+. /#+    ###.fr     #
+#   Updated: 2018/06/23 18:28:07 by fablin      ###    #+. /#+    ###.fr     #
 #                                                         /                  #
 #                                                        /                   #
 # ************************************************************************** #
 
-NAME	=	filler
+NAME	=	fablin.filler
 
 SRC_DIR	=	./src/
 
@@ -34,17 +34,30 @@ FLAGS	=	-Wall -Wextra -Werror
 
 all		: $(NAME)
 
-$(NAME)	:	libft
-			gcc $(FLAGS) $(SOURCES) ./libft/libft.a -I ./libft/inc -I ./inc -o fablin.filler
+$(NAME)	:	$(OBJECTS)
+			@make libft
+			gcc $(FLAGS) $(OBJECTS) -L ./libft/ -lft -o $(NAME)
 
-clean	:	make clean -C ./libft/
+$(OBJ_DIR)%.o	:	$(SRC_DIR)%.c
+					@make obj
+					gcc $(FLAGS) -c $< -o $@ -I $(INC_DIR) -I ./libft/inc/
 
-fclean	:	make fclean -C ./libft/
+clean	:	obj
+			@make clean -C ./libft/
+			@rm -rf $(OBJ_DIR)
 
-re		:	make re -C ./libft/
+fclean	:	obj
+			@make fclean -C ./libft/
+			@rm -f $(NAME)
+			@rm -rf $(OBJ_DIR)
+
+re		:	fclean all
+
+obj	:
+			@mkdir -p $(OBJ_DIR)
 
 libft	:
-			make -C ./libft/
+			@make -C ./libft/
 
 test	:	libft
 			gcc ./src/*.c ./libft/libft.a -I ./libft/inc -I ./inc -o ../players/filler_test.filler
@@ -52,4 +65,4 @@ test	:	libft
 debug	:	libft
 			gcc -ggdb ./src/*.c ./libft/libft.a -I ./libft/inc -I ./inc -o ../players/filler_test.filler && lldb ../players/filler_test.filler
 
-.PHONY	:	all clean fclean re libft
+.PHONY	:	all clean fclean re libft obj

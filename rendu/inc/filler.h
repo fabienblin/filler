@@ -6,14 +6,14 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/15 14:08:20 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/22 20:41:18 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/23 17:48:07 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
-# define CONTOUR 20
+# define CONTOUR 15
 
 # include "libft.h"
 

@@ -6,7 +6,7 @@
 /*   By: fablin <fablin@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/18 19:02:48 by fablin       #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/22 20:40:48 by fablin      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/23 17:50:03 by fablin      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,13 +25,13 @@ void	ft_contour(t_grid *grid, t_grid *strat, char me)
 		while (x < grid->x)
 		{
 			if ((x + 1 < grid->x) && ft_isnotme(me, grid->data[y][x + 1]))
-				strat->data[y][x] = 20;
+				strat->data[y][x] = CONTOUR;
 			else if ((x - 1 > 0) && ft_isnotme(me, grid->data[y][x - 1]))
-				strat->data[y][x] = 20;
+				strat->data[y][x] = CONTOUR;
 			else if ((y + 1 < grid->y) && ft_isnotme(me, grid->data[y + 1][x]))
-				strat->data[y][x] = 20;
+				strat->data[y][x] = CONTOUR;
 			else if ((y - 1 > 0) && ft_isnotme(me, grid->data[y - 1][x]))
-				strat->data[y][x] = 20;
+				strat->data[y][x] = CONTOUR;
 			x++;
 		}
 		y++;
