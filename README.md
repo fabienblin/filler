@@ -11,4 +11,4 @@ Filler is real time strategy fighter, using the power of hugs to phagocyte the e
 
 ## Author
 
-* **Fabien Blin** @ 42
+* **Fabien Blin** @ 42 Lyon
